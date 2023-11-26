@@ -13,7 +13,7 @@ from the project's root directory.
 
 Then, run the application with the following command:
 ```shell
-python3 forecast.py --town <TOWN> --type <TYPE> --frequency <FREQUENCY> --horizon <HORIZON>
+python3 forecast.py --town <TOWN> --type <TYPE> --frequency <FREQUENCY> --horizon <HORIZON> --start <START> --neural <T/F>
 ```
 
 Parameter descriptions:
@@ -21,6 +21,10 @@ Parameter descriptions:
 - `type`: what type of property to forecast prices for. valid values: "Condo", "Single Family", "Two Family", "Three Family", "Vacant Land", "Commerical", "Apartments"
 - `frequency`: prediction granularity. valid values: D, W, M, Y (day, week, month, year)
 - `horizon`: how many predictions to make (e.g. 3 for 3 months when prediction frequency is set to M)
+- `start`: the start date for the predictions (format: YYYY-MM-DD, default: today's date)
+- `neural`: should we use NeuralForecast over StatsForecast? (T/F, default: F)
+
+NeuralForecast will generally provide improved predictions over StatsForecast, at the cost of speed.
 
 ## Example
 After running 
@@ -30,14 +34,17 @@ python3 forecast.py --town Stamford --type "Single Family" --frequency W --horiz
 you should
 get the following result:
 ```
-Generating forecast for Stamford:
+Generating forecast for Bridgeport:
   Property Type: Single Family
-  Prediction Frequency: W
-  Prediction Horizon: 3
+  Prediction Frequency: M
+  Prediction Horizon: 12
+  Start Date: 2023-11-25
+  Library: StatsForecast
   
-|    | Date                |   Price |
-|---:|:--------------------|--------:|
-|  0 | 2021-10-03 00:00:00 |  828718 |
-|  1 | 2021-10-10 00:00:00 |  828695 |
-|  2 | 2021-10-17 00:00:00 |  828695 |
+|    | Date       |   Price |
+|---:|:-----------|--------:|
+|  0 | 2023-11-30 |  238308 |
+|  1 | 2023-12-31 |  238308 |
+|  2 | 2024-01-31 |  238308 |
+...
 ```

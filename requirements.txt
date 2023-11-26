@@ -1,4 +1,6 @@
 evadb[postgres,forecasting] @ git+https://github.com/georgia-tech-db/evadb.git@68265d3b138babfe4a20091bc5fa7a67b56072f5
 psycopg2-binary
-statsforecast
+neuralforecast
 tabulate
+pandas~=2.1.2
+numpy
